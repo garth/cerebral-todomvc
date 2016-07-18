@@ -8,14 +8,16 @@ import visibleTodos from '../../computed/visibleTodos.js'
 export default connect({
   isAllChecked: isAllChecked(),
   todoKeys: visibleTodos()
-}, function List({ isAllChecked, todoKeys, signals }) {
+}, {
+  toggleAllChanged: 'app.list.toggleAllChanged'
+},function List({ isAllChecked, todoKeys, toggleAllChanged }) {
   return (
     <section id='main'>
       <input
         id='toggle-all'
         type='checkbox'
         checked={isAllChecked}
-        onChange={() => signals.app.list.toggleAllChanged()} />
+        onChange={() => toggleAllChanged()} />
       <label htmlFor='toggle-all'>
         Mark all as complete
       </label>

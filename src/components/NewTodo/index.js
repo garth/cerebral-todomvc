@@ -3,18 +3,21 @@ import { connect } from 'cerebral-view-react'
 
 export default connect({
   title: 'app.new.title'
-}, function NewTodo ({ isSaving, title, signals }) {
+}, {
+  submitted: 'app.new.submitted',
+  titleChanged: 'app.new.titleChanged'
+}, function NewTodo ({ isSaving, title, submitted, titleChanged }) {
   return (
     <form id='todo-form' onSubmit={(e) => {
       e.preventDefault()
-      signals.app.new.submitted()
+      submitted()
     }}>
       <input
         id='new-todo'
         autoComplete='off'
         placeholder='What needs to be done?'
         value={title}
-        onChange={(e) => signals.app.new.titleChanged({ title: e.target.value })}
+        onChange={(e) => titleChanged({ title: e.target.value })}
       />
     </form>
   )

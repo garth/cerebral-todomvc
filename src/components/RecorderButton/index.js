@@ -3,7 +3,12 @@ import { connect } from 'cerebral-view-react'
 
 export default connect({
   recorder: 'recorder'
-}, function ({ recorder, signals }) {
+}, {
+  resumed: 'recorder.resumed',
+  stopped: 'recorder.stopped',
+  played: 'recorder.played',
+  recorded: 'recorder.recorded' 
+}, function ({ recorder, resumed, stopped, played, recorded }) {
   let style = {
     border: '1px solid black',
     borderRadius: '2px',
@@ -17,7 +22,7 @@ export default connect({
     return React.createElement('button', {
       style: style,
       onClick: function () {
-        signals.recorder.paused({}, {
+        paused({}, {
           isRecorded: true
         })
       }
@@ -26,23 +31,23 @@ export default connect({
   if (recorder.isPaused) {
     return React.createElement('button', {
       style: style,
-      onClick: function () { signals.recorder.resumed() }
+      onClick: function () { resumed() }
     }, 'Play')
   }
   if (recorder.isRecording) {
     return React.createElement('button', {
       style: style,
-      onClick: function () { signals.recorder.stopped() }
+      onClick: function () { stopped() }
     }, 'Stop recording')
   }
   if (recorder.hasRecorded) {
     return React.createElement('button', {
       style: style,
-      onClick: function () { signals.recorder.played() }
+      onClick: function () { played() }
     }, 'Play')
   }
   return React.createElement('button', {
     style: style,
-    onClick: function () { signals.recorder.recorded() }
+    onClick: function () { recorded() }
   }, 'Record')
 })

@@ -14,22 +14,25 @@ function CompletedButton({ completedCount, onClick }) {
 export default connect({
   filter: 'app.footer.filter',
   counts: counts()
-}, function Footer ({ filter, counts, signals }) {
+}, {
+  filterClicked: 'app.footer.filterClicked',
+  clearCompletedClicked: 'app.footer.clearCompletedClicked'
+}, function Footer ({ filter, counts, signals, filterClicked, clearCompletedClicked }) {
   return (
     <footer id='footer'>
       <span id='todo-count'><strong>{counts.remainingCount} {counts.remainingCountPlural}</strong></span>
       <ul id='filters'>
         <li>
-          <Link className={cn({ selected: filter === 'all' })} signal='app.footer.filterClicked'>All</Link>
+          <Link className={cn({ selected: filter === 'all' })} signal={filterClicked}>All</Link>
         </li>
         <li>
-          <Link className={cn({ selected: filter === 'active' })} signal='app.footer.filterClicked' params={{filter: 'active'}}>Active</Link>
+          <Link className={cn({ selected: filter === 'active' })} signal={filterClicked} params={{filter: 'active'}}>Active</Link>
         </li>
         <li>
-          <Link className={cn({ selected: filter === 'completed' })} signal='app.footer.filterClicked' params={{filter: 'completed'}}>Completed</Link>
+          <Link className={cn({ selected: filter === 'completed' })} signal={filterClicked} params={{filter: 'completed'}}>Completed</Link>
         </li>
       </ul>
-      {counts.completedCount ? <CompletedButton completedCount={counts.completedCount} onClick={() => signals.app.footer.clearCompletedClicked()} /> : null}
+      {counts.completedCount ? <CompletedButton completedCount={counts.completedCount} onClick={() => clearCompletedClicked()} /> : null}
     </footer>
   )
 })

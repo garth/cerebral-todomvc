@@ -4,7 +4,14 @@ import { connect } from 'cerebral-view-react'
 
 export default connect(props => ({
   todo: `app.list.todos.${props.todoKey}`
-}), class Todo extends React.Component {
+}), {
+  todoDoubleClicked: 'app.list.todoDoubleClicked',
+  newTitleChanged: 'app.list.newTitleChanged',
+  newTitleSubmitted: 'app.list.newTitleSubmitted',
+  toggleCompletedChanged: 'app.list.toggleCompletedChanged',
+  removeTodoClicked: 'app.list.removeTodoClicked',
+  newTitleAborted: 'app.list.newTitleAborted'
+}, class Todo extends React.Component {
   componentDidUpdate (prevProps) {
     if (!prevProps.todo.$isEditing && this.props.todo.$isEditing) {
       this.refs.edit.focus()
@@ -15,34 +22,34 @@ export default connect(props => ({
       return
     }
 
-    this.props.signals.app.list.todoDoubleClicked({
+    this.props.todoDoubleClicked({
       ref: this.props.todo.$ref
     })
   }
   onNewTitleChange (event) {
-    this.props.signals.app.list.newTitleChanged({
+    this.props.newTitleChanged({
       ref: this.props.todo.$ref,
       title: event.target.value
     })
   }
   onNewTitleSubmit (event) {
     event.preventDefault()
-    this.props.signals.app.list.newTitleSubmitted({
+    this.props.newTitleSubmitted({
       ref: this.props.todo.$ref
     })
   }
   onCompletedToggle () {
-    this.props.signals.app.list.toggleCompletedChanged({
+    this.props.toggleCompletedChanged({
       ref: this.props.todo.$ref
     })
   }
   onRemoveClick () {
-    this.props.signals.app.list.removeTodoClicked({
+    this.props.removeTodoClicked({
       ref: this.props.todo.$ref
     })
   }
   onNewTitleBlur () {
-    this.props.signals.app.list.newTitleAborted({
+    this.props.newTitleAborted({
       ref: this.props.todo.$ref
     })
   }
