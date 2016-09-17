@@ -11,8 +11,7 @@ export default connect({
   clearCompletedClicked: 'app.clearCompletedClicked'
 },
   function Footer ({ filter, counts, filterClicked, clearCompletedClicked }) {
-
-    let countLabel = 'item left';
+    let countLabel = 'item left'
     if (counts.remainingCount === 0 || counts.remainingCount > 1) {
       countLabel = 'items left'
     }
@@ -53,12 +52,11 @@ export default connect({
           </li>
         </ul>
         {
-          counts.completedCount ?
+          counts.completedCount ? (
             <button id='clear-completed' onClick={() => clearCompletedClicked()}>
               Clear completed ({counts.completedCount})
             </button>
-          :
-            null
+          ) : null
         }
       </footer>
     )

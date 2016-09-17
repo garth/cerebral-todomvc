@@ -7,7 +7,7 @@
     "build": "webpack",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist/",
-    "test": "standard"
+    "test": "standard --verbose | snazzy"
   },
   "repository": {
     "type": "git",
@@ -20,33 +20,30 @@
   },
   "homepage": "https://github.com/cerebral/cerebral-todomvc#readme",
   "dependencies": {
-    "babel-core": "^6.10.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "cerebral": "^1.0.0",
-    "cerebral-module-devtools": "^0.7.0",
-    "cerebral-module-recorder": "^0.6.0",
-    "cerebral-module-router": "^0.16.1",
-    "cerebral-view-react": "^0.12.4",
+    "cerebral-module-devtools": "^0.7.2",
+    "cerebral-module-recorder": "^0.6.1",
+    "cerebral-module-router": "^0.17.1",
+    "cerebral-view-react": "^0.12.12",
     "classnames": "^2.2.5",
-    "css-loader": "^0.23.1",
+    "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
-    "react": "^15.2.0",
-    "react-dom": "^15.2.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "style-loader": "^0.13.1",
     "todomvc-app-css": "^1.0.4",
     "todomvc-common": "^1.0.2",
     "uuid": "^2.0.2",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.2"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.0",
     "gh-pages": "^0.11.0",
-    "standard": "^7.1.2"
-  },
-  "standard": {
-    "parser": "babel-eslint"
+    "snazzy": "^5.0.0",
+    "standard": "^8.0.0"
   }
 }
